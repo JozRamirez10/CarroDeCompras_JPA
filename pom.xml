@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>webapp</groupId>
+    <artifactId>webapp-jpa</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <!-- Archivo web de java -->
+        <packaging>war</packaging>
+
+        <dependencies>
+            <!-- Dependencias de jakarta -->
+            <!-- para que funcione CDI es necesario que sea una version de
+                 jakarta ee 9 -->
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-api</artifactId>
+                <version>9.0.0</version> <!-- Verificar version -->
+                <scope>provided</scope>
+            </dependency>
+            <!-- Dependencia para archivos JSON -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.12.3</version>
+            </dependency>
+            <!-- Dependencia para trabajar con JSTL
+                Necesario que sea la version 2.0.0
+            -->
+            <dependency>
+                <groupId>org.glassfish.web</groupId>
+                <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+            <!-- Dependencia para trabajar con CDI -->
+            <dependency>
+                <groupId>org.jboss.weld.servlet</groupId>
+                <artifactId>weld-servlet-core</artifactId>
+                <version>4.0.1.SP1</version> <!-- Version para jakarta o javaee 9-->
+            </dependency>
+            <!-- Es necesario crear en la carpeta WEB-INF el archivo beans.xml
+                y escribir la siguiente línea: <beans />
+                para que funcione la inyección de dependencias -->
+
+            <!-- Dependencia para trabajar con JPA -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core-jakarta</artifactId>
+                <version>5.5.8.Final</version>
+            </dependency>
+
+        </dependencies>
+
+        <!-- Configuraciones necesarias para JavaEE -->
+        <build>
+            <plugins>
+                    <!-- Configuración de plugins maven -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                </plugin>
+                    <!-- Configuración de plugins tomcat -->
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                            <configuration>
+                                <url>http://localhost:8080/manager/text</url>
+                                <username>admin</username>
+                                <password>12345</password>
+                            </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.3</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                </plugin>
+            </plugins>
+        </build>
+
+        <!-- Es necesario crear una carpeta "webapp" con el archivo index.jsp -->
+        <!-- Especificar la concifuración del run para que ejecute tomcat -->
+        <!-- Levantar el servidor de tomcat desde la terminal:
+            apache-tomcat-10.1.11/bin/
+            ./startup.sh
+         -->
+
+</project>

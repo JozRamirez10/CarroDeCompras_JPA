@@ -1,0 +1,22 @@
+Para trabajar con jdbc en tomcat es necesario instalar la libreria
+ - mysql-connector-java
+
+Luego ir a la carpeta /Users/jozfama/.m2/repository/com/mysql/mysql-connector-java/... y copiar el .jar
+Pegamos el .jar en la carpeta "lib" de tomcat:
+    - apache-tomcat-.../lib/...
+
+Para trabajar con mysql en tomcat no es necesario tener mysql en el pom, solo en la carpeta lib
+
+Recuerda reiniciar el servidor de tomcat
+
+create table usuario(
+    id int not null auto_increment,
+    username varchar(12),
+    password varchar(60),
+    email varchar(45),
+    primary key(id)
+);
+
+insert into usuario(username, password, email) values("admin", "12345", "admin@email.com");
+insert into usuario(username, password, email) values("andres", "12345", "andres@email.com");
+insert into usuario(username, password, email) values("joz", "1432", "jozfama@email.com");

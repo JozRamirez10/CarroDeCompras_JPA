@@ -1,0 +1,19 @@
+Ir a la pagina jakarta.ee/Specifications/jakarta contexts and dependency injection
+Estamos usando jakarta ee 9, por lo que entramos en la version 3.0 / Documentacion en HTML / ctrl + f -> beans.xml
+Copiamos la configuración:
+
+<beans xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd"
+    version="3.0">
+
+Agregar la línea
+    bean-discovery-mode="all"
+        -> El CDI trabaja con todos los archivos y scoped de forma automática
+        -> Forma por defecto
+
+    bean-discovery-mode="annotated"
+        -> El CDI trabaja solo con las clases que tengan de forma explícita anotaciones
+
+    bean-discovery-mode="none"
+        -> El CDI no trabaja
